@@ -1,5 +1,5 @@
 {
-    "name": "patched/smile-module-debug-toolbar",
+    "name": "hpols/smile-module-debug-toolbar",
     "type": "magento2-module",
     "description": "Smile Debug Toolbar",
     "homepage": "https://github.com/Smile-SA/magento2-module-debug-toolbar",
@@ -11,7 +11,7 @@
         }
     ],
     "license": "EPL-2.0",
-    "version": "13.1.0",
+    "version": "13.1.1",
     "require": {
         "php": "~7.0.6|~7.1.0",
         "magento/framework": "~101.0.0"

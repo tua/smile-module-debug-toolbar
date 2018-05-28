@@ -265,6 +265,10 @@ function smileToolbarTreeGrid(node, forceClose)
  */
 function smileToolbarHighlight()
 {
+    require(["t.hljs"], function(Configurable){
+
     var blocks = document.querySelectorAll('pre code');
     [].forEach.call(blocks, hljs.highlightBlock);
+
+    });
 }

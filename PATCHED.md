@@ -1,10 +1,13 @@
 # Patched 20180528
 
-Download original package, 
+### Tag
 
-```
-patch -p1 < 20180528.patch 
-```
+git tag 13.1.1
+
+git push origin :13.1.0
+git push origin 13.1.1
+
+git push bitbucket bugfix
 
 
 ### composer.json
@@ -13,14 +16,14 @@ From
 
     "name": "smile/module-debug-toolbar",
     
-    "version": "13.1.0",
+    "version": "3.1.0",
 
 
 To
 
     "name": "patched/smile-module-debug-toolbar",
     
-    "version": "13.1.0",
+    "version": "13.1.1",
 
 
 ### registration.php
