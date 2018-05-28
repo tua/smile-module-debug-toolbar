@@ -135,7 +135,8 @@
     display: none;
     background: #FFF;
     box-shadow: var(--toolbar-shadow);
-    width: 700px;
+    /*width: 700px;*/
+    width: 70%;
 }
 
 .smile-toolbar .st-zones .st-title,
@@ -267,7 +268,8 @@
     float: right;
     background: #FFF;
     box-shadow: var(--toolbar-shadow);
-    width: 550px;
+    /*width: 550px;*/
+    width: 30%;
     padding-bottom: 10px;
 }
 

@@ -145,7 +145,7 @@ class Layout extends AbstractZone
         $html.= '<td style="padding-left: '.(10*$level).'px" ';
         $html.= 'class="'.(($row['nb_child']>0) ? 'st-with-children' : '').'">'.$span.$row['name'].'</td>';
         $html.= '<td>';
-        $html.= '<pre class="complex-value" style="width: 370px;">';
+        $html.= '<pre class="complex-value" style="width: 90%;">';
         $html.= 'Type:         '.$row['type']."\n";
         $html.= 'ScopePrivate: '.($row['scope'] ? 'Yes' : 'No')."\n";
         $html.= 'Cacheable:    '.($row['cacheable'] ? 'Yes' : 'No')."\n";

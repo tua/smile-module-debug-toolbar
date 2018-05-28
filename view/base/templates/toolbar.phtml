@@ -74,5 +74,7 @@ $toolbarId = $block->getToolbarId();
     </div>
 </div>
 <script type="text/javascript">
-    smileToolbarAdd('<?php echo $toolbarId; ?>', <?php echo ($block->isWarning() ? 'true' : 'false'); ?>);
+    require(['smile-toolbar'], function () {
+        smileToolbarAdd('<?php echo $toolbarId; ?>', <?php echo ($block->isWarning() ? 'true' : 'false'); ?>);
+    })
 </script>
