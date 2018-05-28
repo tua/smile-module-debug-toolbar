@@ -7,6 +7,8 @@
  */
 if (PHP_SAPI !== 'cli') {
     // we need to declare the stat profiler manually, to use it after
+
+    /*
     $options = [
         'drivers' => [
             [
@@ -18,6 +20,7 @@ if (PHP_SAPI !== 'cli') {
 
     \Magento\Framework\Profiler::applyConfig($options, BP, false);
     \Smile\DebugToolbar\Helper\Profiler::setStat($options['drivers'][0]['stat']);
+    */
 }
 
 \Magento\Framework\Component\ComponentRegistrar::register(

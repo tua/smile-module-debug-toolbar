@@ -56,7 +56,7 @@ class AddZones implements ObserverInterface
         MysqlFactory $mysqlBlockFactory,
         ObserverFactory $observerBlockFactory,
         PreferenceFactory $preferenceBlockFactory,
-        ProfilerFactory $profilerBlockFactory,
+//        ProfilerFactory $profilerBlockFactory,
         RequestFactory $requestBlockFactory,
         ResponseFactory $responseBlockFactory
     ) {
@@ -66,7 +66,7 @@ class AddZones implements ObserverInterface
         $this->blockFactories[] = $layoutBlockFactory;
         $this->blockFactories[] = $mysqlBlockFactory;
         $this->blockFactories[] = $cacheBlockFactory;
-        $this->blockFactories[] = $profilerBlockFactory;
+//        $this->blockFactories[] = $profilerBlockFactory;
         $this->blockFactories[] = $observerBlockFactory;
         $this->blockFactories[] = $preferenceBlockFactory;
     }

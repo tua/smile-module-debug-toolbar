@@ -96,7 +96,7 @@ class AddToolbar implements ObserverInterface
 
         // we do not want that the toolbar has a impact on stats => compute the stat in first
         $this->helperData->startTimer('profiler_build');
-        $this->helperProfiler->computeStats();
+        //$this->helperProfiler->computeStats();
         $this->helperData->stopTimer('profiler_build');
 
         /** @var MagentoRequest $request */
