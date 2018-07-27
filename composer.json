@@ -1,5 +1,5 @@
 {
-    "name": "hpols/smile-module-debug-toolbar",
+    "name": "tua/smile-module-debug-toolbar",
     "type": "magento2-module",
     "description": "Smile Debug Toolbar",
     "homepage": "https://github.com/Smile-SA/magento2-module-debug-toolbar",
