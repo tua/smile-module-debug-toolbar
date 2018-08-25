@@ -22,14 +22,39 @@ try {
     return;
 }
 
+$newList = [];
 foreach ($list as $key => $row) {
+    $fromMatches = [[],[],[]];
+    $joinMatches = [[],[],[]];
+    preg_match_all('/.*?(FROM|INTO|UPDATE)\s`?([^` ]*).*/', $row['query'], $fromMatches);
+    preg_match_all('/.*?(JOIN)\s`?([^` ]*).*/', $row['query'], $joinMatches);
+
+
     $row['id']    = $block->formatValue($row['id'], [], 'number');
     $row['type']  = $block->formatValue($row['type'], [], 'center');
     $row['time']  = $block->formatValue($row['time'], ['gt' => 0.05], 'time_ms');
+    $row['main_table'] = $block->formatValue(implode(',', $fromMatches[2]), [], 'code_sql');
+    $row['join_tables'] = $block->formatValue(implode("\n", $joinMatches[2]), [], 'code_sql');
     $row['query'] = $block->formatValue($row['query'], [], 'code_sql');
     $row['html_info']  = $block->buildHtmlInfo($row['params'], $row['trace']);
-    $list[$key] = $row;
+
+    if (!empty($_GET['only_appcode_sql']) && $_GET['only_appcode_sql']) {
+        $hasAppCode = false;
+        foreach ($row['trace'] as $file) {
+            if (strpos($file, 'app/code') !== false) {
+                $hasAppCode = true;
+            }
+        }
+        if ($hasAppCode) {
+            $newList[] = $row;
+        }
+        continue;
+    }
+
+    $newList[$key] = $row;
 }
+$list = $newList;
+
 
 echo $block->displayTable(
     'MySQL Queries',
@@ -38,6 +63,8 @@ echo $block->displayTable(
         'id'    => ['label' => 'Id',    'width' => '60px'],
         'type'  => ['label' => 'Type',  'width' => '100px'],
         'time'  => ['label' => 'Time',  'width' => '100px'],
+        'main_table'  => ['label' => 'From/Into/Update',  'width' => '200px'],
+        'join_tables'  => ['label' => 'Join',  'width' => '200px'],
         'query' => ['label' => 'Query', 'width' => ''],
     ],
     'html_info'
@@ -74,6 +101,21 @@ $sections['Number'] = [
 $block->addToSummary('Mysql', 'Number', $sections['Number']['total']);
 $block->addToSummary('Mysql', 'Time', $sections['Time']['total']);
 
+$Allparams = ['_current' => true, '_use_rewrite' => true, '_query' => ['only_appcode_sql' => 0, 'only_appcode_trace' => 0]];
+$onlyAppCodeWithAllTrace = $Allparams;
+$onlyAppCodeWithAllTrace['_query']['only_appcode_sql'] = 1;
+$onlyAppCodeWithAllTrace['_query']['only_appcode_trace'] = 0;
+
+$onlyAppCodeWithOnlyTrace = $Allparams;
+$onlyAppCodeWithOnlyTrace['_query']['only_appcode_sql'] = 1;
+$onlyAppCodeWithOnlyTrace['_query']['only_appcode_trace'] = 1;
+
+
+echo '(<a href="' . $block->getUrl('*/*/*', $Allparams) . '">Show all trace</a>) ';
+echo '(<a href="' . $block->getUrl('*/*/*', $onlyAppCodeWithAllTrace) . '">Show app/code sql with all trace</a>)';
+echo '(<a href="' . $block->getUrl('*/*/*', $onlyAppCodeWithOnlyTrace) . '">Show app/code sql with only app/code trace</a>)';
+
+
 echo $block->displaySectionsGrouped($sections);
 
 $sections = [
@@ -83,3 +125,4 @@ $sections = [
 ];
 
 echo $block->displaySections($sections);
+

@@ -155,6 +155,13 @@ class Mysql extends AbstractZone
                 $code = $match[3];
             }
             $file = str_replace(BP.'/', '', $file);
+
+            if (!empty($_GET['only_appcode_trace']) && $_GET['only_appcode_trace'] && strpos($file, 'app/code') === false) {
+                continue;
+            }
+
+
+
             $html.= "<tr>";
             $html.= "<td>".$this->escapeHtml($file)."</td>";
             $html.= "<td>".$this->escapeHtml($line)."</td>";
@@ -165,3 +172,4 @@ class Mysql extends AbstractZone
         return $html;
     }
 }
+
